@@ -5,19 +5,24 @@ using UnityEngine;
 public class Observer : MonoBehaviour
 {
     float MomentoDeteccion = 0f;
+    public AudioSource SonidoAlerta;
     public Transform player;
     public GameEnding gameEnding;
 
     bool m_IsPlayerInRange;
 
-    
+    public void Start()
+    {
+        SonidoAlerta = this.gameObject.GetComponent<AudioSource>();
+    }
+
     void OnTriggerEnter (Collider other)
     {
         if (other.transform == player)
         {
             m_IsPlayerInRange = true;
             MomentoDeteccion = Time.time;
-
+            SonidoAlerta.PlayOneShot(SonidoAlerta.clip);
         }
     }
 
