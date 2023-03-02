@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Observer : MonoBehaviour
 {
-   
+    float MomentoDeteccion = 0f;
     public Transform player;
     public GameEnding gameEnding;
 
@@ -16,7 +16,8 @@ public class Observer : MonoBehaviour
         if (other.transform == player)
         {
             m_IsPlayerInRange = true;
-           
+            MomentoDeteccion = Time.time;
+
         }
     }
 
@@ -44,8 +45,8 @@ public class Observer : MonoBehaviour
                 {
                     if (raycastHit.collider.transform == player)
                     {
-                        
 
+                        if (Time.time >= MomentoDeteccion + 2f)
                             gameEnding.CaughtPlayer();
                     }
                 }
