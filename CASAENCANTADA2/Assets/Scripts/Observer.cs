@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Observer : MonoBehaviour
 {
+    [SerializeField] GameObject exclmacion;
     float MomentoDeteccion = 0f;
     public AudioSource SonidoAlerta;
     public Transform player;
@@ -23,6 +24,7 @@ public class Observer : MonoBehaviour
             m_IsPlayerInRange = true;
             MomentoDeteccion = Time.time;
             SonidoAlerta.PlayOneShot(SonidoAlerta.clip);
+            exclmacion.SetActive(true);
         }
     }
 
@@ -31,7 +33,7 @@ public class Observer : MonoBehaviour
         if (other.transform == player)
         {
             m_IsPlayerInRange = false;
-            
+            exclmacion.SetActive(false);
 
         }
     }
